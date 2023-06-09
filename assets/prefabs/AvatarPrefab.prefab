@@ -390,13 +390,13 @@
     "_dstBlendFactor": 4,
     "_color": {
       "__type__": "cc.Color",
-      "r": 56,
+      "r": 148,
       "g": 255,
-      "b": 231,
-      "a": 130
+      "b": 242,
+      "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "7d8f9b89-4fd1-4c9f-a3ab-38ec7cded7ca@f9941",
+      "__uuid__": "1f015cfe-bd43-4a7c-9f01-7a056ea193d7@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 3,
@@ -425,7 +425,7 @@
     "node": {
       "__id__": 11
     },
-    "_enabled": true,
+    "_enabled": false,
     "__prefab": {
       "__id__": 17
     },
@@ -969,10 +969,16 @@
     "buttonLabel": {
       "__id__": 30
     },
-    "radialTime": 30,
+    "radialTime": 10,
     "progressBar": {
       "__id__": 11
     },
+    "startR": 148,
+    "startG": 255,
+    "startB": 242,
+    "endR": 255,
+    "endG": 107,
+    "endB": 74,
     "_id": ""
   },
   {

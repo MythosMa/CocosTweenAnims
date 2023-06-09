@@ -1,4 +1,13 @@
-import { _decorator, CCFloat, Component, Label, Node, Sprite } from "cc";
+import {
+  _decorator,
+  CCFloat,
+  Color,
+  Component,
+  Label,
+  Node,
+  Sprite,
+  Vec3,
+} from "cc";
 const { ccclass, property } = _decorator;
 
 @ccclass("AvatarController")
@@ -15,6 +24,11 @@ export class AvatarController extends Component {
   currentRadialTime = 0;
   isStartRadial = false;
 
+  colorChangeMap = [
+    { startR: 148, startG: 255, startB: 242, endR: 255, endG: 199, endB: 56 },
+    { startR: 255, startG: 199, startB: 56, endR: 255, endG: 107, endB: 74 },
+  ];
+
   start() {
     this.currentRadialTime = this.radialTime;
   }
@@ -25,8 +39,19 @@ export class AvatarController extends Component {
       if (this.currentRadialTime < 0) {
         this.currentRadialTime = this.radialTime;
       }
-      this.progressBar.getComponent(Sprite).fillRange =
-        this.currentRadialTime / this.radialTime;
+      let ratio = this.currentRadialTime / this.radialTime;
+      this.progressBar.getComponent(Sprite).fillRange = -ratio;
+      let percent = ((1 - ratio) * 10) / 5;
+      let colorInfoIndex = Math.floor(percent);
+      let colorInfo = this.colorChangeMap[colorInfoIndex];
+      let { startR, startG, startB, endR, endG, endB } = colorInfo;
+      let targetColor = new Color(
+        startR - (startR - endR) * (percent - colorInfoIndex),
+        startG - (startG - endG) * (percent - colorInfoIndex),
+        startB - (startB - endB) * (percent - colorInfoIndex)
+      );
+      this.progressBar.getComponent(Sprite).color = targetColor;
+      this.progressBar.angle = 360 * ratio;
     }
   }
 
